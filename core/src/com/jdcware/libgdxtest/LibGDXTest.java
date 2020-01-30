@@ -5,29 +5,37 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jdcware.libgdxtest.entity.Player;
 
 public class LibGDXTest extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+
+	private Player player;
+	// SpriteBatch batch;
+	// Texture img;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		player = new Player();
 	}
 
 	@Override
 	public void render () {
+		float delta = Gdx.graphics.getDeltaTime();
+		player.update(delta);
+
 		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		player.render();
+		//
+		// Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		// batch.begin();
+		// batch.draw(img, 0, 0);
+		// batch.end();
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		player.dispose();
+		// batch.dispose();
+		// img.dispose();
 	}
 }
