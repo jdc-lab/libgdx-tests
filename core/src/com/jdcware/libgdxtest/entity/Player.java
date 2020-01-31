@@ -1,5 +1,7 @@
 package com.jdcware.libgdxtest.entity;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jdcware.libgdxtest.basic.Entity;
@@ -19,7 +21,23 @@ public class Player implements Entity {
 
     @Override
     public void update(float delta) {
+        int movingSpeed = 2;
 
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            position.y += movingSpeed;
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            position.y -= movingSpeed;
+        }
+
+        if (position.y < 0) {
+            position.y = 0;
+        }
+
+        if (position.y > Gdx.graphics.getHeight() - img.getHeight()) {
+            position.y = Gdx.graphics.getHeight() - img.getHeight();
+        }
     }
 
     @Override
